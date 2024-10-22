@@ -7,11 +7,9 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types";
 
 type SignUpScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, "SignUp">;
+  navigation: any; // No need to type this strictly for now
 };
 
 const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
@@ -84,11 +82,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
     color: "#f0f8ff",
-    textShadowColor: "#483d8b",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 8,
-    marginBottom: 40,
     textAlign: "center",
+    marginBottom: 40,
   },
   input: {
     width: "100%",
@@ -110,21 +105,9 @@ const styles = StyleSheet.create({
     borderColor: "#9370db",
     marginVertical: 20,
     alignItems: "center",
-    shadowColor: "#483d8b",
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.7,
-    shadowRadius: 6,
   },
-  buttonText: {
-    color: "#f0f8ff",
-    fontSize: 18,
-    fontWeight: "600",
-  },
-  signUpText: {
-    color: "#d8bfd8",
-    marginTop: 20,
-    fontSize: 16,
-  },
+  buttonText: { color: "#f0f8ff", fontSize: 18, fontWeight: "600" },
+  signUpText: { color: "#d8bfd8", marginTop: 20, fontSize: 16 },
 });
 
 export default SignUpScreen;
