@@ -53,9 +53,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
       />
       <TouchableOpacity
         style={styles.customButton}
-        onPress={() => {
-          /* Handle sign up */
-        }}
+        onPress={() => navigation.navigate("GradeSelectionScreen")}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>

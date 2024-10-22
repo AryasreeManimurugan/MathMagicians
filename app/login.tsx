@@ -10,14 +10,13 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 
-type SignUpScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, "SignUp">;
+type LoginScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
 };
 
-const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
+const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <View style={styles.container}>
@@ -25,7 +24,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         source={require("../assets/images/logo.jpeg")}
         style={styles.logo}
       />
-      <Text style={styles.headerText}>Sign Up</Text>
+      <Text style={styles.headerText}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -43,24 +42,16 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        placeholderTextColor="#d8bfd8"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry
-      />
       <TouchableOpacity
         style={styles.customButton}
         onPress={() => {
-          /* Handle sign up */
+          /* Handle login */
         }}
       >
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-        <Text style={styles.signUpText}>Already have an account? Login</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
+        <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -129,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default LoginScreen;
