@@ -7,15 +7,13 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { useRouter } from "expo-router"; // useRouter from expo-router
 
-type SignUpScreenProps = {
-  navigation: any; // No need to type this strictly for now
-};
-
-const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
+const SignUpScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const router = useRouter(); // Initialize router
 
   return (
     <View style={styles.container}>
@@ -24,6 +22,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         style={styles.logo}
       />
       <Text style={styles.headerText}>Sign Up</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -33,6 +32,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         keyboardType="email-address"
         autoCapitalize="none"
       />
+
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -41,6 +41,7 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
+
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
@@ -49,13 +50,15 @@ const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
+
       <TouchableOpacity
         style={styles.customButton}
-        onPress={() => navigation.navigate("GradeSelectionScreen")}
+        onPress={() => router.push("/GradeSelection")} // Navigate to GradeSelection
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+
+      <TouchableOpacity onPress={() => router.push("/login")}>
         <Text style={styles.signUpText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>
@@ -106,8 +109,16 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignItems: "center",
   },
-  buttonText: { color: "#f0f8ff", fontSize: 18, fontWeight: "600" },
-  signUpText: { color: "#d8bfd8", marginTop: 20, fontSize: 16 },
+  buttonText: {
+    color: "#f0f8ff",
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  signUpText: {
+    color: "#d8bfd8",
+    marginTop: 20,
+    fontSize: 16,
+  },
 });
 
 export default SignUpScreen;
