@@ -1,6 +1,10 @@
-import { Button, Text, View } from "react-native";
+import { Button, GestureResponderEvent, Text, View } from "react-native";
 
 export default function Index() {
+  function onIncrement(event: GestureResponderEvent): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <View
       style={{
@@ -12,7 +16,13 @@ export default function Index() {
       <Text>Welcome to Math Magicians</Text>
      
       
+       <Button
        
+       title="Login"
+       accessibilityLabel="increment"
+       onPress={onIncrement}
+       color="gray"
+     /> 
       </View>
   );
 }
