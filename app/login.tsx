@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { useRouter } from "expo-router"; // useRouter from expo-router
+import { useRouter } from "expo-router";
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -25,7 +25,7 @@ const LoginScreen: React.FC = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#d8bfd8"
+        placeholderTextColor="#87cefa"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -35,7 +35,7 @@ const LoginScreen: React.FC = () => {
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#d8bfd8"
+        placeholderTextColor="#87cefa"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -43,7 +43,7 @@ const LoginScreen: React.FC = () => {
 
       <TouchableOpacity
         style={styles.customButton}
-        onPress={() => router.push("/GradeSelection")} // Navigate to GradeSelection
+        onPress={() => router.push("/GradeSelection")}
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6a5acd",
+    backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
   },
   logo: {
@@ -69,45 +69,52 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     borderRadius: 90,
     borderWidth: 4,
-    borderColor: "#8a2be2",
+    borderColor: "#ffffff", // White border to match WelcomeScreen
   },
   headerText: {
     fontSize: 32,
     fontWeight: "bold",
-    color: "#f0f8ff",
-    textAlign: "center",
+    color: "#ffffff",
+    textShadowColor: "#000080",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 8,
     marginBottom: 40,
   },
   input: {
     width: "100%",
     paddingVertical: 12,
     paddingHorizontal: 15,
-    backgroundColor: "#7b68ee",
+    backgroundColor: "#ffffff", // White background for inputs
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: "#9370db",
+    borderColor: "#87cefa",
     marginVertical: 10,
-    color: "#f0f8ff",
+    color: "#000080", // Dark blue text color for input fields
   },
   customButton: {
     width: "100%",
-    paddingVertical: 12,
-    backgroundColor: "#7b68ee",
+    paddingVertical: 15,
+    backgroundColor: "#ffffff", // White button background
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: "#9370db",
+    borderColor: "#87cefa", // Light blue border
     marginVertical: 20,
     alignItems: "center",
+    shadowColor: "#000080",
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 6,
   },
   buttonText: {
-    color: "#f0f8ff",
+    color: "#1E90FF", // Blue button text
     fontSize: 18,
     fontWeight: "600",
   },
   signUpText: {
-    color: "#d8bfd8",
+    color: "#ffffff",
     marginTop: 20,
     fontSize: 16,
+    textDecorationLine: "underline",
   },
 });
 

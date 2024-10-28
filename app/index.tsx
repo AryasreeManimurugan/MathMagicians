@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6a5acd",
+    backgroundColor: "#1E90FF", // Vibrant blue background
     paddingHorizontal: 20,
   },
   logo: {
@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     borderRadius: 90,
     borderWidth: 4,
-    borderColor: "#8a2be2",
+    borderColor: "#ffffff", // White border to stand out
   },
   welcomeText: {
     fontSize: 36,
     fontWeight: "bold",
-    color: "#f0f8ff",
-    textShadowColor: "#483d8b",
+    color: "#ffffff",
+    textShadowColor: "#000080",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 8,
     marginBottom: 50,
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
   customButton: {
     width: "100%",
     paddingVertical: 15,
-    backgroundColor: "#9370db",
+    backgroundColor: "#ffffff", // White button background
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    shadowColor: "#483d8b",
+    shadowColor: "#000080",
     shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.5,
     shadowRadius: 6,
   },
   link: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: {
-    color: "#f0f8ff",
+    color: "#1E90FF", // Blue text to match background theme
     fontSize: 20,
     fontWeight: "600",
   },
