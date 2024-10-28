@@ -5,7 +5,7 @@ const KindergartenWelcome: React.FC = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/images/logo.jpeg")} // Make sure this path is correct
+        source={require("../assets/images/logo.jpeg")} 
         style={styles.logo}
       />
       <Text style={styles.headerText}>Welcome to Kindergarten</Text>
