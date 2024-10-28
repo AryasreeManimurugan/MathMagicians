@@ -1,19 +1,28 @@
-import { Button, Text, View } from "react-native";
+import React from "react";
+import { Text, View, Image, StyleSheet, Pressable } from "react-native";
+import { Link } from "expo-router";
 
-export default function Index() {
+export default function WelcomeScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Welcome to Math Magicians</Text>
-     
-      
-       
+    <View style={styles.container}>
+      <Image
+        source={require("../assets/images/logo.jpeg")}
+        style={styles.logo}
+      />
+      <Text style={styles.welcomeText}>Welcome to Math Magicians</Text>
+      <View style={styles.buttonContainer}>
+        <Pressable style={styles.customButton}>
+          <Link href="/login" style={styles.link}>
+            <Text style={styles.buttonText}>Login</Text>
+          </Link>
+        </Pressable>
+        <Pressable style={styles.customButton}>
+          <Link href="/signup" style={styles.link}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </Link>
+        </Pressable>
       </View>
+    </View>
   );
 }
 
