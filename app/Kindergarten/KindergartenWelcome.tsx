@@ -1,19 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { useRouter } from "expo-router";
 
 const KindergartenWelcome: React.FC = () => {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/images/logo.jpeg")} 
+        source={require("../../assets/images/logo.jpeg")}
         style={styles.logo}
       />
       <Text style={styles.headerText}>Welcome to Kindergarten</Text>
 
-      <TouchableOpacity style={styles.lessonButton}>
+      <TouchableOpacity
+        style={styles.lessonButton}
+        onPress={() => router.push("/Kindergarten/KindergartenLesson1")}
+      >
         <Text style={styles.buttonText}>Lesson 1: Basic Counting</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.lessonButton}>
+
+      <TouchableOpacity
+        style={styles.lessonButton}
+        onPress={() => router.push("Kindergarten/KindergartenLesson2")} // Navigate to KindergartenLesson2
+      >
         <Text style={styles.buttonText}>Lesson 2: Shapes and Colors</Text>
       </TouchableOpacity>
     </View>
@@ -25,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#1E90FF", // Blue background
+    backgroundColor: "#1E90FF",
     paddingHorizontal: 20,
   },
   logo: {
@@ -46,13 +56,13 @@ const styles = StyleSheet.create({
     width: "80%",
     paddingVertical: 15,
     marginVertical: 10,
-    backgroundColor: "#FFFFFF", // White button background
+    backgroundColor: "#FFFFFF",
     borderRadius: 10,
     alignItems: "center",
   },
   buttonText: {
     fontSize: 18,
-    color: "#1E90FF", // Blue text to match theme
+    color: "#1E90FF",
     fontWeight: "600",
   },
 });

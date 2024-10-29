@@ -15,7 +15,7 @@ const GradeSelection: React.FC = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/KindergartenWelcome")} // Navigate to KindergartenWelcome screen
+          onPress={() => router.push("/Kindergarten/KindergartenWelcome")} // Navigate to KindergartenWelcome screen
         >
           <Text style={styles.buttonText}>Kindergarten</Text>
         </TouchableOpacity>
