@@ -18,9 +18,19 @@ const KindergartenResults2: React.FC = () => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push("../GradeSelection")}
+        onPress={() =>
+          router.push(
+            score >= 7
+              ? "../GradeSelection"
+              : "/Kindergarten/KindergartenQuiz2"
+          )
+        }
       >
-        <Text style={styles.buttonText}>Back to Grade Selection</Text>
+        <Text style={styles.buttonText}>
+          {score >= 7
+            ? "Proceed to Grade Selection"
+            : "Return to Lesson 2: Shapes and Colors"}
+        </Text>
       </TouchableOpacity>
     </View>
   );

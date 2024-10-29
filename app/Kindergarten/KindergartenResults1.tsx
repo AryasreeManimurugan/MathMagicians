@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useRouter, useLocalSearchParams } from "expo-router"; // Import router and params for navigation
+import { useRouter, useLocalSearchParams } from "expo-router";
 
-const KindergartenResults1: React.FC = () => {
+const KindergartenResults2: React.FC = () => {
   const router = useRouter();
-  const { score } = useLocalSearchParams(); // Retrieve score from params
+  const { score } = useLocalSearchParams(); // Retrieve score from parameters
 
   return (
     <View style={styles.container}>
@@ -18,9 +18,19 @@ const KindergartenResults1: React.FC = () => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push("/GradeSelection")}
+        onPress={() =>
+          router.push(
+            score >= 7
+              ? "/Kindergarten/KindergartenLesson2"
+              : "/Kindergarten/KindergartenLesson1"
+          )
+        }
       >
-        <Text style={styles.buttonText}>Back to Grade Selection</Text>
+        <Text style={styles.buttonText}>
+          {score >= 7
+            ? "Proceed to Lesson 2: Shapes and Colors"
+            : "Return to Lesson 1: Basic Counting"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
