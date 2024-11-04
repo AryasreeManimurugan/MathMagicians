@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 
-const KindergartenResults2: React.FC = () => {
+const KindergartenResults1: React.FC = () => {
   const router = useRouter();
   const { score } = useLocalSearchParams(); // Retrieve score from parameters
 
