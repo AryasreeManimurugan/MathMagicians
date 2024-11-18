@@ -7,6 +7,17 @@ const GradeSelection: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* Profile Button */}
+      <TouchableOpacity
+        style={styles.profileButton}
+        onPress={() => router.push("/Profile")}
+      >
+        <Image
+          source={require("../assets/images/user.png")}
+          style={styles.profileImage}
+        />
+      </TouchableOpacity>
+
       <Image
         source={require("../assets/images/logo.jpeg")}
         style={styles.logo}
@@ -46,6 +57,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#1E90FF",
     paddingHorizontal: 20,
+  },
+  profileButton: {
+    position: "absolute",
+    top: 40,
+    right: 20,
+    zIndex: 10,
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   logo: {
     width: 180,

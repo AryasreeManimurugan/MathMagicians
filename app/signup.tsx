@@ -6,6 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useRouter } from "expo-router";
 
@@ -17,70 +20,78 @@ const SignUpScreen: React.FC = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/images/logo.jpeg")}
-        style={styles.logo}
-      />
-      <Text style={styles.headerText}>Sign Up</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        placeholderTextColor="#87cefa"
-        value={firstName}
-        onChangeText={setFirstName}
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#87cefa"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#87cefa"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        placeholderTextColor="#87cefa"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry
-      />
-
-      <TouchableOpacity
-        style={styles.customButton}
-        onPress={() => router.push("/GradeSelection")}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
+        <View style={styles.container}>
+          <Image
+            source={require("../assets/images/logo.jpeg")}
+            style={styles.logo}
+          />
+          <Text style={styles.headerText}>Sign Up</Text>
 
-      <TouchableOpacity onPress={() => router.push("/login")}>
-        <Text style={styles.signUpText}>Already have an account? Login</Text>
-      </TouchableOpacity>
-    </View>
+          <TextInput
+            style={styles.input}
+            placeholder="First Name"
+            placeholderTextColor="#87cefa"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#87cefa"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#87cefa"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+
+
+          <TouchableOpacity
+            style={styles.customButton}
+            onPress={() => router.push("/GradeSelection")}
+          >
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => router.push("/login")}>
+            <Text style={styles.signUpText}>
+              Already have an account? Login
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
+  },
+  container: {
+    alignItems: "center",
+    width: "100%",
   },
   logo: {
     width: 180,
