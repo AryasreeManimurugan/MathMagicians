@@ -22,7 +22,7 @@ const KindergartenWelcome: React.FC = () => {
 
       <TouchableOpacity
         style={styles.lessonButton}
-        onPress={() => router.push("Kindergarten/KindergartenLesson2")} // Navigate to KindergartenLesson2
+        onPress={() => router.push("/Kindergarten/KindergartenLesson2")} // Navigate to KindergartenLesson2
       >
         <Text style={styles.buttonText}>Lesson 2: Shapes and Colors</Text>
       </TouchableOpacity>
