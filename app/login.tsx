@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
 import { auth } from "@/database";
@@ -30,7 +31,7 @@ const LoginScreen: React.FC = () => {
       const userCredential = await signInWithEmailAndPassword(authentication, email, password);
 
       // If login is successful, show success message
-      Alert.alert("Login Successful", "Welcome back!");
+     Alert.alert("Login Successful", "Welcome back!");
 
       // Redirect to the next screen after successful login
       router.push("/GradeSelection");
