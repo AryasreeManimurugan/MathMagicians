@@ -6,81 +6,139 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../database";  // Ensure this imports the correct Firebase auth instance
 
 const SignUpScreen: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
+  const authentication = auth;
+
+  const handleSignup = async () => {
+    if (!firstName || !email || !password || !confirmPassword) {
+      setErrorMessage("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
+    try {
+      // Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // User created successfully, show success alert
+      Alert.alert("Account Created", "Please log in!");
+
+      // Redirect to Login screen
+      router.push("/login");
+
+      // Clear input fields after successful sign-up
+      setFirstName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error: any) {
+      if (error.code === "auth/email-already-in-use") {
+        setErrorMessage("Email already in use");
+      } else if (error.code === "auth/weak-password") {
+        setErrorMessage("Password is too weak");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/images/logo.jpeg")}
-        style={styles.logo}
-      />
-      <Text style={styles.headerText}>Sign Up</Text>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <Image source={require("../assets/images/logo.jpeg")} style={styles.logo} />
+          <Text style={styles.headerText}>Sign Up</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        placeholderTextColor="#87cefa"
-        value={firstName}
-        onChangeText={setFirstName}
-      />
+          {/* First Name Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="First Name"
+            placeholderTextColor="#87cefa"
+            value={firstName}
+            onChangeText={setFirstName}
+          />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#87cefa"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+          {/* Email Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#87cefa"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#87cefa"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+          {/* Password Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#87cefa"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        placeholderTextColor="#87cefa"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry
-      />
+          {/* Confirm Password Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm Password"
+            placeholderTextColor="#87cefa"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureTextEntry
+          />
 
-      <TouchableOpacity
-        style={styles.customButton}
-        onPress={() => router.push("/GradeSelection")}
-      >
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
+          {/* Error Message */}
+          {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
-      <TouchableOpacity onPress={() => router.push("/login")}>
-        <Text style={styles.signUpText}>Already have an account? Login</Text>
-      </TouchableOpacity>
-    </View>
+          {/* Sign Up Button */}
+          <TouchableOpacity style={styles.customButton} onPress={handleSignup}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+
+          {/* Login Link */}
+          <TouchableOpacity onPress={() => router.push("/login")}>
+            <Text style={styles.signUpText}>Already have an account? Login</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
+  },
+  container: {
+    alignItems: "center",
+    width: "100%",
   },
   logo: {
     width: 180,
@@ -134,6 +192,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     textDecorationLine: "underline",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 10,
+  },
+  successText: {
+    color: "green",
+    fontSize: 14,
+    marginTop: 10,
   },
 });
 

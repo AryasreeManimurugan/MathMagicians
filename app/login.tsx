@@ -6,62 +6,110 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { auth } from "@/database";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
+
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+  const authentication = auth;
+  
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        setErrorMessage("All fields are required");
+        return;
+      }
+
+      // Firebase Authentication
+      const userCredential = await signInWithEmailAndPassword(authentication, email, password);
+
+      // If login is successful, show success message
+      Alert.alert("Login Successful", "Welcome back!");
+
+      // Redirect to the next screen after successful login
+      router.push("/GradeSelection");
+
+      // Clear input fields after successful login
+      setEmail("");
+      setPassword("");
+    } catch (error: any) {
+      if (error.code === "auth/user-not-found") {
+        setErrorMessage("No user found with this email");
+      } else if (error.code === "auth/wrong-password") {
+        setErrorMessage("Incorrect password");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
+    }
+  };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/images/logo.jpeg")}
-        style={styles.logo}
-      />
-      <Text style={styles.headerText}>Login</Text>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <Image source={require("../assets/images/logo.jpeg")} style={styles.logo} />
+          <Text style={styles.headerText}>Login</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#87cefa"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+          {/* Email Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#87cefa"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#87cefa"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+          {/* Password Input */}
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#87cefa"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
 
-      <TouchableOpacity
-        style={styles.customButton}
-        onPress={() => router.push("/GradeSelection")}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+          {/* Error Message */}
+          {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
-      <TouchableOpacity onPress={() => router.push("/signup")}>
-        <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
-      </TouchableOpacity>
-    </View>
+          {/* Login Button */}
+          <TouchableOpacity style={styles.customButton} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+
+          {/* Sign Up Link */}
+          <TouchableOpacity onPress={() => router.push("/signup")}>
+            <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
+  },
+  container: {
+    alignItems: "center",
+    width: "100%",
   },
   logo: {
     width: 180,
@@ -115,6 +163,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     textDecorationLine: "underline",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 10,
+  },
+  successText: {
+    color: "green",
+    fontSize: 14,
+    marginTop: 10,
   },
 });
 
