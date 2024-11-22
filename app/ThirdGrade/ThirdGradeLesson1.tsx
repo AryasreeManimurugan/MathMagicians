@@ -11,7 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
 
-const KindergartenLesson1: React.FC = () => {
+const ThirdGradeLesson1: React.FC = () => {
   const router = useRouter();
 
   return (
@@ -24,11 +24,10 @@ const KindergartenLesson1: React.FC = () => {
 
       {/* Title Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Lesson 1: Basic Counting</Text>
+        <Text style={styles.title}>Lesson 1</Text>
         <Text style={styles.description}>
-          In this lesson, you will learn the basics of counting. We'll start
-          with numbers 1 through 10 and show you how to count objects using
-          these numbers.
+          In this lesson, we will discuss multiplication of two digit numbers. After you have finished the videos below, enjoy practicing with the new skills you have achieved today. Go Magicians!
+    
         </Text>
       </View>
 
@@ -36,16 +35,49 @@ const KindergartenLesson1: React.FC = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Watch the Video</Text>
         <View style={styles.video}>
-          <YouTubeIframe height={200} videoId="h6RNkQ7lU8Y" />
+          <YouTubeIframe height={200} videoId="PZjIT9CH6bM" />
         </View>
       </View>
+
+
+
 
       {/* Practice Problems Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Practice Problems</Text>
+
+
+
+
+
+      <View style={styles.sectionContainer}> 
+      <Text style={styles.sectionTitle}>Practice Problems</Text>
+      <View style={styles.problemContainer}>
+        <Text style={styles.problemText}>
+           1. Do the Multiplication: 12 * 12
+        </Text>
+       <TextInput
+        style={styles.input}
+        placeholder="Your answer"
+         keyboardType="numeric"
+          />
+        </View>
+
+
+
+        <View style={styles.problemContainer}>
+        <Text style={styles.problemText}>
+           2. Do the Multiplication: 53 * 87
+        </Text>
+       <TextInput
+        style={styles.input}
+        placeholder="Your answer"
+         keyboardType="numeric"
+          />
+        </View>
+
+
         <View style={styles.problemContainer}>
           <Text style={styles.problemText}>
-            1. Count the following items: 🍎🍎🍎
+            3. Do the Multiplication: 65 * 32
           </Text>
           <TextInput
             style={styles.input}
@@ -58,7 +90,7 @@ const KindergartenLesson1: React.FC = () => {
 
         <View style={styles.problemContainer}>
           <Text style={styles.problemText}>
-            2. Count the following items: 🐱🐱🐱🐱🐱
+            4. Do the Multiplication:  11 * 15
           </Text>
           <TextInput
             style={styles.input}
@@ -66,49 +98,65 @@ const KindergartenLesson1: React.FC = () => {
             keyboardType="numeric"
           />
         </View>
+
+
+      
+
+        <View style={styles.problemContainer}>
+          <Text style={styles.problemText}>
+            5. Do the Multiplication: 45 * 90
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Your answer"
+            keyboardType="numeric"
+          />
+        </View>
+
+        <View style={styles.problemContainer}>
+          <Text style={styles.problemText}>
+            6. Do the Multiplication:  34 * 15
+            
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Your answer"
+            keyboardType="numeric"
+          />
+        </View>
+
+
+
+        <View style={styles.problemContainer}>
+          <Text style={styles.problemText}>
+            7. Do the Multiplition: 23 * 12   
+            
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Your answer"
+            keyboardType="numeric"
+          />
+
+
+        </View>
+         
+        </View>
+
+
 
         
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>
-            3. Count the following items: 🌳🌳🌳🌳
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>
-            4. Count the following items: ⭐⭐⭐⭐⭐⭐
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>
-            5. Count the following items: 🍕🍕🍕🍕🍕🍕🍕
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer"
-            keyboardType="numeric"
-          />
-        </View>
-      </View>
 
       {/* Quiz Button Section */}
       <View style={styles.quizSection}>
         <TouchableOpacity
           style={styles.quizButton}
-          onPress={() => router.push("/Kindergarten/KindergartenQuiz1")}
+          onPress={() => router.push("/ThirdGrade/ThirdGradeQuiz1")}
         >
           <Text style={styles.buttonText}>Take the Graded Quiz</Text>
         </TouchableOpacity>
       </View>
+      
     </ScrollView>
   );
 };
@@ -213,4 +261,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenLesson1;
+export default ThirdGradeLesson1;

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-const KindergartenQuiz1: React.FC = () => {
+const Quiz1: React.FC = () => {
   const router = useRouter();
 
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -16,16 +16,16 @@ const KindergartenQuiz1: React.FC = () => {
   }>({});
 
   const questions = [
-    { question: "How many apples are there? 🍎🍎🍎", options: [2, 3, 4] },
-    { question: "How many cats are there? 🐱🐱🐱🐱", options: [3, 4, 5] },
-    { question: "How many stars are there? ⭐⭐⭐", options: [3, 2, 5] },
-    { question: "How many cars are there? 🚗🚗🚗🚗🚗", options: [5, 4, 6] },
-    { question: "How many trees are there? 🌳🌳", options: [1, 2, 3] },
-    { question: "How many fish are there? 🐟🐟🐟🐟🐟🐟", options: [5, 6, 7] },
-    { question: "How many suns are there? 🌞🌞", options: [2, 3, 4] },
-    { question: "How many flowers are there? 🌸🌸🌸", options: [2, 3, 4] },
-    { question: "How many pencils are there? ✏️✏️", options: [1, 3, 2] },
-    { question: "How many balloons are there? 🎈🎈🎈🎈", options: [4, 3, 5] },
+    { question: "How many apples are there? 🐔🐔🐔🐔+ 🍎🍎", options: [2, 3, 6] },
+    { question: "How many cats are there? 🐱🐱-🐱🐱", options: [3, 2, 0] },
+    { question: "How many stars are there? 😍😍😍-😍😍😍", options: [1, 2, 0] },
+    { question: "How many cars are there? 👻👻👻+👻", options: [5, 4, 2] },
+    { question: "How many trees are there? 🌳+🌳", options: [1, 2, 0] },
+    { question: "How many fish are there? 🦖🦖🦖🦖🦖+ 0️⃣", options: [5, 6, 7] },
+    { question: "How many suns are there? 🌞-🌞", options: [0, 3, 7] },
+    { question: "How many flowers are there? 🥺🥺🥺+🦄", options: [2, 3, 4] },
+    { question: "How many pencils are there? ✏️✏️+ 🐬", options: [1, 3, 2] },
+    { question: "How many balloons are there? 🎈🎈🎈-🎈", options: [4, 3, 2] },
   ];
 
   const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
@@ -40,13 +40,13 @@ const KindergartenQuiz1: React.FC = () => {
       (total, answer) => total + (answer !== null ? 1 : 0),
       0
     );
-    router.push({ pathname: "Kindergarten/KindergartenResults1", params: { score } });
+    router.push({ pathname: "/FirstGrade/result1", params: { score } });
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Basic Counting Quiz</Text>
+        <Text style={styles.title}>Arithmetic Quiz 1</Text>
         <Text style={styles.description}>
           Answer the following questions by selecting the correct option.
         </Text>
@@ -185,4 +185,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenQuiz1;
+export default Quiz1;
