@@ -6,13 +6,49 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { auth } from "@/database";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
+
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+  const authentication = auth;
+  
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        setErrorMessage("All fields are required");
+        return;
+      }
+
+      // Firebase Authentication
+      const userCredential = await signInWithEmailAndPassword(authentication, email, password);
+
+      // If login is successful, show success message
+     Alert.alert("Login Successful", "Welcome back!");
+
+      // Redirect to the next screen after successful login
+      router.push("/GradeSelection");
+
+      // Clear input fields after successful login
+      setEmail("");
+      setPassword("");
+    } catch (error: any) {
+      if (error.code === "auth/user-not-found") {
+        setErrorMessage("No user found with this email");
+      } else if (error.code === "auth/wrong-password") {
+        setErrorMessage("Incorrect password");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,12 +92,16 @@ const LoginScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
+  },
+  container: {
+    alignItems: "center",
+    width: "100%",
   },
   logo: {
     width: 180,
@@ -115,6 +155,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     textDecorationLine: "underline",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 10,
+  },
+  successText: {
+    color: "green",
+    fontSize: 14,
+    marginTop: 10,
   },
 });
 

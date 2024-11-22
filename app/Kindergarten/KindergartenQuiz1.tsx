@@ -16,16 +16,56 @@ const KindergartenQuiz1: React.FC = () => {
   }>({});
 
   const questions = [
-    { question: "How many apples are there? 🍎🍎🍎", options: [2, 3, 4] },
-    { question: "How many cats are there? 🐱🐱🐱🐱", options: [3, 4, 5] },
-    { question: "How many stars are there? ⭐⭐⭐", options: [3, 2, 5] },
-    { question: "How many cars are there? 🚗🚗🚗🚗🚗", options: [5, 4, 6] },
-    { question: "How many trees are there? 🌳🌳", options: [1, 2, 3] },
-    { question: "How many fish are there? 🐟🐟🐟🐟🐟🐟", options: [5, 6, 7] },
-    { question: "How many suns are there? 🌞🌞", options: [2, 3, 4] },
-    { question: "How many flowers are there? 🌸🌸🌸", options: [2, 3, 4] },
-    { question: "How many pencils are there? ✏️✏️", options: [1, 3, 2] },
-    { question: "How many balloons are there? 🎈🎈🎈🎈", options: [4, 3, 5] },
+    {
+      question: "How many apples are there? 🍎🍎🍎",
+      options: [2, 3, 4],
+      answer: 1,
+    },
+    {
+      question: "How many cats are there? 🐱🐱🐱🐱",
+      options: [3, 4, 5],
+      answer: 1,
+    },
+    {
+      question: "How many stars are there? ⭐⭐⭐",
+      options: [3, 2, 5],
+      answer: 0,
+    },
+    {
+      question: "How many cars are there? 🚗🚗🚗🚗🚗",
+      options: [5, 4, 6],
+      answer: 0,
+    },
+    {
+      question: "How many trees are there? 🌳🌳",
+      options: [1, 2, 3],
+      answer: 1,
+    },
+    {
+      question: "How many fish are there? 🐟🐟🐟🐟🐟🐟",
+      options: [5, 6, 7],
+      answer: 1,
+    },
+    {
+      question: "How many suns are there? 🌞🌞",
+      options: [2, 3, 4],
+      answer: 0,
+    },
+    {
+      question: "How many flowers are there? 🌸🌸🌸",
+      options: [2, 3, 4],
+      answer: 1,
+    },
+    {
+      question: "How many pencils are there? ✏️✏️",
+      options: [1, 3, 2],
+      answer: 2,
+    },
+    {
+      question: "How many balloons are there? 🎈🎈🎈🎈",
+      options: [4, 3, 5],
+      answer: 0,
+    },
   ];
 
   const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
@@ -36,11 +76,14 @@ const KindergartenQuiz1: React.FC = () => {
   };
 
   const handleSubmitQuiz = () => {
-    const score = Object.values(selectedAnswers).reduce(
-      (total, answer) => total + (answer !== null ? 1 : 0),
-      0
-    );
-    router.push({ pathname: "Kindergarten/KindergartenResults1", params: { score } });
+    const score = questions.reduce((total, question, index) => {
+      const selectedAnswer = selectedAnswers[index];
+      return total + (selectedAnswer === question.answer ? 1 : 0);
+    }, 0);
+    router.push({
+      pathname: "/Kindergarten/KindergartenResults1",
+      params: { score },
+    });
   };
 
   return (

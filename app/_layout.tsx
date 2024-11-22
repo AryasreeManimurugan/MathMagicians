@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
+      {/* Main Screens */}
       <Stack.Screen name="index" options={{ title: "Welcome" }} />
       <Stack.Screen name="login" options={{ title: "Login" }} />
       <Stack.Screen name="signup" options={{ title: "Sign Up" }} />
@@ -10,6 +11,13 @@ export default function RootLayout() {
         name="GradeSelection"
         options={{ title: "Select Your Grade" }}
       />
+
+      {/* Profile Screen */}
+      <Stack.Screen
+        name="Profile/profilemain"
+        options={{ title: "My Profile" }}
+      />
+
       {/* Kindergarten Screens */}
       <Stack.Screen
         name="Kindergarten/KindergartenWelcome"

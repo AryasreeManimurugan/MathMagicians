@@ -6,15 +6,58 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../database";  // Ensure this imports the correct Firebase auth instance
 
 const SignUpScreen: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+
+  const authentication = auth;
+
+  const handleSignup = async () => {
+    if (!firstName || !email || !password || !confirmPassword) {
+      setErrorMessage("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
+    try {
+      // Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // User created successfully, show success alert
+      Alert.alert("Account Created", "Please log in!");
+
+      // Redirect to Login screen
+      router.push("/login");
+
+      // Clear input fields after successful sign-up
+      setFirstName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error: any) {
+      if (error.code === "auth/email-already-in-use") {
+        setErrorMessage("Email already in use");
+      } else if (error.code === "auth/weak-password") {
+        setErrorMessage("Password is too weak");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -74,13 +117,18 @@ const SignUpScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#1E90FF", // Blue background
     paddingHorizontal: 20,
+  },
+  container: {
+    alignItems: "center",
+    width: "100%",
   },
   logo: {
     width: 180,
@@ -134,6 +182,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     textDecorationLine: "underline",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 10,
+  },
+  successText: {
+    color: "green",
+    fontSize: 14,
+    marginTop: 10,
   },
 });
 

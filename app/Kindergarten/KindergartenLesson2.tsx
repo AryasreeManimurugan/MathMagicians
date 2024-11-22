@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  TextInput,
   Image,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -13,6 +12,64 @@ import YouTubeIframe from "react-native-youtube-iframe";
 
 const KindergartenLesson2: React.FC = () => {
   const router = useRouter();
+
+  // State for selected answers and feedback
+  const [selectedAnswers, setSelectedAnswers] = useState({
+    q1: null,
+    q2: null,
+    q3: null,
+    q4: null,
+    q5: null,
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  // Correct answers for the quiz
+  const correctAnswers = {
+    q1: "Circle",
+    q2: "Red",
+    q3: "Triangle",
+    q4: "Green",
+    q5: "Square",
+  };
+
+  // Questions and options
+  const questions = [
+    {
+      key: "q1",
+      text: "What shape is this? 🔵",
+      options: ["Square", "Circle", "Triangle", "Rectangle"],
+    },
+    {
+      key: "q2",
+      text: "What color is this? 🟥",
+      options: ["Green", "Blue", "Red", "Yellow"],
+    },
+    {
+      key: "q3",
+      text: "Identify the shape: 🔺",
+      options: ["Circle", "Square", "Triangle", "Hexagon"],
+    },
+    {
+      key: "q4",
+      text: "What color is this? 🟩",
+      options: ["Purple", "Orange", "Green", "Brown"],
+    },
+    {
+      key: "q5",
+      text: "What shape is this? 🟧",
+      options: ["Square", "Triangle", "Circle", "Pentagon"],
+    },
+  ];
+
+  // Function to handle option selection
+  const handleOptionSelect = (questionKey: string, option: string) => {
+    setSelectedAnswers((prev) => ({ ...prev, [questionKey]: option }));
+  };
+
+  // Function to handle quiz submission
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -43,50 +100,56 @@ const KindergartenLesson2: React.FC = () => {
       {/* Practice Problems Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Practice Problems</Text>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>1. What shape is this? 🔵</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer (e.g., Circle)"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>2. What color is this? 🟥</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer (e.g., Red)"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>3. Identify the shape: 🔺</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer (e.g., Triangle)"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>4. What color is this? 🟩</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer (e.g., Green)"
-          />
-        </View>
-        <View style={styles.problemContainer}>
-          <Text style={styles.problemText}>5. What shape is this? 🟧</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Your answer (e.g., Square)"
-          />
-        </View>
+        {questions.map((question) => (
+          <View key={question.key} style={styles.problemContainer}>
+            <Text style={styles.problemText}>{question.text}</Text>
+            {question.options.map((option) => (
+              <TouchableOpacity
+                key={option}
+                style={[
+                  styles.optionButton,
+                  selectedAnswers[question.key] === option &&
+                    styles.selectedOption,
+                ]}
+                onPress={() => handleOptionSelect(question.key, option)}
+              >
+                <Text style={styles.optionText}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+            {submitted && (
+              <Text
+                style={[
+                  styles.feedbackText,
+                  selectedAnswers[question.key] === correctAnswers[question.key]
+                    ? styles.correct
+                    : styles.wrong,
+                ]}
+              >
+                {selectedAnswers[question.key] === correctAnswers[question.key]
+                  ? "Correct!"
+                  : `Wrong! The correct answer is ${
+                      correctAnswers[question.key]
+                    }.`}
+              </Text>
+            )}
+          </View>
+        ))}
       </View>
 
-      {/* Quiz Button Section */}
+      {/* Submit Button */}
+      <View style={styles.quizSection}>
+        <TouchableOpacity style={styles.quizButton} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Submit Answers</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Navigation to Graded Quiz */}
       <View style={styles.quizSection}>
         <TouchableOpacity
           style={styles.quizButton}
           onPress={() => router.push("/Kindergarten/KindergartenQuiz2")}
         >
-          <Text style={styles.buttonText}>Take the Graded Quiz</Text>
+          <Text style={styles.buttonText}>Take Graded Quiz</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -157,19 +220,37 @@ const styles = StyleSheet.create({
   problemText: {
     fontSize: 18,
     color: "#333",
-    marginBottom: 5,
+    marginBottom: 10,
     textAlign: "center",
   },
-  input: {
-    width: "80%",
-    height: 40,
+  optionButton: {
+    width: "90%",
+    padding: 10,
+    borderRadius: 5,
     borderColor: "#483d8b",
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    backgroundColor: "#ffffff",
+    marginVertical: 5,
+    alignItems: "center",
+  },
+  selectedOption: {
+    backgroundColor: "#dcdcdc",
+  },
+  optionText: {
     fontSize: 16,
     color: "#333",
-    backgroundColor: "#f9f9f9",
+  },
+  feedbackText: {
+    marginTop: 5,
+    fontSize: 14,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  correct: {
+    color: "green",
+  },
+  wrong: {
+    color: "red",
   },
   quizSection: {
     width: "90%",
