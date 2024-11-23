@@ -16,37 +16,80 @@ const SecGradeQuiz1: React.FC = () => {
   }>({});
 
   const questions = [
-    { question: "Do the addition: 32 + 27", options: [23, 73, 59] },
-    { question: "Do the addition: 89 + 10", options: [33, 22, 99] },
-    { question: "Do the addition: 21 + 12", options: [33, 12, 0] },
-    { question: "Do the addition: 34 + 54", options: [58, 88, 82] },
-    { question: "Do the addition: 10 + 20", options: [30, 20, 10] },
-    { question: "Do the addition: 19 + 65", options: [84, 63, 87] },
-    { question: "Do the addition: 17 + 11", options: [12, 28, 17] },
-    { question: "Do the addition: 44 + 45", options: [12, 43, 89] },
-    { question: "Do the addition: 24 + 53", options: [77, 30, 21] },
-    { question: "Do the addition: 13 + 37", options: [46, 13, 50] },
+    {
+      question: "Do the addition: 32 + 27", options: [23, 73, 59],
+      answer: 59,
+    },
+    {
+      question: "Do the addition: 89 + 10", options: [33, 22, 99],
+      answer: 99,
+    },
+    {
+      question: "Do the addition: 21 + 12", options: [33, 12, 0],
+     
+      answer: 33,
+    },
+    {
+      question: "Do the addition: 34 + 54", options: [58, 88, 82],
+      
+      answer: 88,
+    },
+    {
+      question: "Do the addition: 10 + 20", options: [30, 20, 10],
+  
+      answer: 30,
+    },
+    {
+      question: "Do the addition: 13 + 37", options: [84, 50, 89]  ,
+      
+      answer: 50,
+    },
+    {
+      question: "Do the addition: 17 + 11", options: [12, 28, 17],
+      
+      answer: 28,
+    },
+    {
+      question: "Do the addition: 19 + 65", options: [84, 63, 87],
+     
+      answer: 84,
+    },
+    {
+      question: "Do the addition: 44 + 45", options: [12, 43, 89] ,
+     
+      answer: 89,
+    },
+    {
+      question: "Do the addition: 24 + 53", options: [77, 30, 21],
+      
+      answer: 77,
+    },
   ];
 
-  const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
+  const handleAnswerSelect = (questionIndex: number, selectedValue: number) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questionIndex]: optionIndex,
+      [questionIndex]: selectedValue, 
     }));
   };
-
+  
   const handleSubmitQuiz = () => {
-    const score = Object.values(selectedAnswers).reduce(
-      (total, answer) => total + (answer !== null ? 1 : 0),
-      0
-    );
-    router.push({ pathname: "/SecondGrade/SecResult1", params: { score } });
+    const score = questions.reduce((total, question, index) => {
+      const selectedAnswer = selectedAnswers[index]; 
+      return total + (selectedAnswer === question.answer ? 1 : 0); 
+    }, 0);
+  
+    router.push({
+      pathname: "/SecondGrade/SecResult1",
+      params: { score },
+    });
   };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Addition Quiz 1</Text>
+        <Text style={styles.title}> Addition Quiz</Text>
         <Text style={styles.description}>
           Answer the following questions by selecting the correct option.
         </Text>
@@ -56,27 +99,28 @@ const SecGradeQuiz1: React.FC = () => {
         <View key={index} style={styles.questionContainer}>
           <Text style={styles.questionText}>{q.question}</Text>
           <View style={styles.optionsContainer}>
-            {q.options.map((option, optionIndex) => (
-              <TouchableOpacity
-                key={optionIndex}
-                style={[
-                  styles.optionButton,
-                  selectedAnswers[index] === optionIndex &&
-                    styles.selectedOption,
-                ]}
-                onPress={() => handleAnswerSelect(index, optionIndex)}
-              >
-                <Text
-                  style={[
-                    styles.optionText,
-                    selectedAnswers[index] === optionIndex &&
-                      styles.selectedOptionText,
-                  ]}
-                >
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          {q.options.map((option, optionIndex) => (
+  <TouchableOpacity
+    key={optionIndex}
+    style={[
+      styles.optionButton,
+      selectedAnswers[index] === option && styles.selectedOption,
+    ]}
+    onPress={() => handleAnswerSelect(index, option)}
+  >
+    <Text
+      style={[
+        styles.optionText,
+        selectedAnswers[index] === option && styles.selectedOptionText,
+      ]}
+    >
+      {option}
+    </Text>
+  </TouchableOpacity>
+))}
+
+
+
           </View>
         </View>
       ))}

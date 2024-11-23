@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useRouter } from "expo-router";
 
-const FirstWelcome: React.FC = () => {
+const FourthGradeWelcome: React.FC = () => {
   const router = useRouter();
 
   return (
@@ -11,20 +11,20 @@ const FirstWelcome: React.FC = () => {
         source={require("../../assets/images/logo.jpeg")}
         style={styles.logo}
       />
-      <Text style={styles.headerText}>Welcome to First Grade </Text>
+      <Text style={styles.headerText}>Welcome to Fourth Grade </Text>
 
       <TouchableOpacity
         style={styles.lessonButton}
-        onPress={() => router.push("/FirstGrade/FirstLesson")}
+        onPress={() => router.push("/FourthGrade/FourthGradeLesson1")}
       >
-        <Text style={styles.buttonText}>Lesson 1: Basic Arithmetic</Text>
+        <Text style={styles.buttonText}>Lesson 1</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.lessonButton}
-        onPress={() => router.push("/FirstGrade/SecLesson")} 
+        onPress={() => router.push("/FourthGrade/FourthGradeLesson2")} 
       >
-        <Text style={styles.buttonText}>Lesson 2: Basic Arithmetic part 2</Text>
+        <Text style={styles.buttonText}>Lesson 2</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FirstWelcome;
+export default FourthGradeWelcome;

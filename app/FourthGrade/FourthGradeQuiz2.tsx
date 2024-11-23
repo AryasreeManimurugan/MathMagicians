@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-const Quiz2: React.FC = () => {
+const FourthGradeQuiz2: React.FC = () => {
   const router = useRouter();
 
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -17,52 +17,52 @@ const Quiz2: React.FC = () => {
 
   const questions = [
     {
-      question:"Do the Division:  5️⃣ / 1️⃣", options: [5, 3, 6],
-      answer: 5,
+      question: "(1/2) ___ (3/4)", options: [">", "<", "="],
+      answer: "<",
     },
     {
-      question: "Do the Division:  2️⃣ / 2️⃣", options: [3, 1, 4],
-      answer: 1,
+      question: "(4/8) ___ (2/4)", options: [">", "<", "="],
+      answer: "=",
     },
     {
-      question: "Do the Multiplication: 8️⃣ * 5️⃣", options: [4, 2, 40],
+      question: "(5/6) ___ (7/8)", options: [">", "<", "="],
      
-      answer: 40,
+      answer: "<",
     },
     {
-      question: "Do the Multiplication: 6️⃣ * 2️⃣", options: [5, 4, 12] ,
+      question: "(1/3) ___ (3/9)", options: [">", "<", "="],
       
-      answer: 12,
+      answer: "=",
     },
     {
-      question: "Do the Multiplication: 2️⃣ * 5️⃣", options: [1, 20, 10],
+      question: "(9/12) ___ (3/4)", options: [">", "<", "="],
   
-      answer: 10,
+      answer: "=",
     },
     {
-      question: "Do the Multiplication: 0️⃣ * 3️⃣", options: [0, 6, 1] ,
+      question: "(6/10) ___ (3/5)", options: [">", "<", "="]  ,
       
-      answer: 0,
+      answer: "=",
     },
     {
-      question: "Do the Division:  4️⃣ / 1️⃣", options: [0, 4, 7] ,
+      question: "(2/6) ___ (1/3)", options: [">", "<", "="],
       
-      answer: 4,
+      answer: "=",
     },
     {
-      question: "Do the Multiplication: 0️⃣ * 0️⃣", options: [2, 3, 0] ,
+      question: "(5/10) ___ (1/2)", options: [">", "<", "="],
      
-      answer: 0,
+      answer: "=",
     },
     {
-      question: "Do the Division:  9️⃣/ 3️⃣", options: [1, 3, 2],
+      question: "(7/9) ___ (5/6)", options: [">", "<", "="] ,
      
-      answer: 3,
+      answer: "<",
     },
     {
-      question: "Do the Multiplication: 🔟 * 3️⃣", options: [3, 30, 0] ,
+      question: "(2/5) ___ (4/10)", options: [">", "<", "="],
       
-      answer: 30,
+      answer: "=",
     },
   ];
 
@@ -80,7 +80,7 @@ const Quiz2: React.FC = () => {
     }, 0);
   
     router.push({
-      pathname: "/FirstGrade/result2",
+      pathname: "/FourthGrade/FourthGradeResult2",
       params: { score },
     });
   };
@@ -89,7 +89,7 @@ const Quiz2: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}> Arithmetic Quiz</Text>
+        <Text style={styles.title}> Fraction Quiz 2</Text>
         <Text style={styles.description}>
           Answer the following questions by selecting the correct option.
         </Text>
@@ -229,4 +229,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Quiz2;
+export default FourthGradeQuiz2;

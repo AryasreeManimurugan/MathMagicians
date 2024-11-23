@@ -30,16 +30,23 @@ return (
       >
         <Text style={styles.buttonText}>Kindergarten</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+      onPress={() => router.push("/FirstGrade/FirstWelcome")}>
         <Text style={styles.buttonText}>1st Grade</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/SecondGrade/SecGradeWelcome")}
+      >
         <Text style={styles.buttonText}>2nd Grade</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+          onPress={() => router.push("/ThirdGrade/ThirdGradeWelcome")}
+      >
         <Text style={styles.buttonText}>3rd Grade</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/FourthGrade/FourthGradeWelcome")}
+      >
         <Text style={styles.buttonText}>4th Grade</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>

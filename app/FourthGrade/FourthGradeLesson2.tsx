@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
 
-const SecLesson: React.FC = () => {
+const FourthGradeLesson2: React.FC = () => {
   const router = useRouter();
 
   // State for selected answers and feedback
@@ -27,63 +27,41 @@ const SecLesson: React.FC = () => {
 
   // Correct answers for the quiz
   const correctAnswers = {
-    q1: "18",
-    q2: "4",
-    q3: "2",
-    q4: "3",
-    q5: "4",
-    q6: "15",
-    q7: "16",
+    q1: "<",
+    q2: "=",
+    q3: "<",
+    q4: ">",
+    q5: ">",
+   
   };
 
   // Questions and options
   const questions = [
     {
       key: "q1",
-      text: " Do the Multiplication: 3️⃣ * 6️⃣",
-      options: ["2", "18", "10", "5"],
+      text: "(2/5) ___ (3/5)",
+      options: [">", "<", "="],
     },
     {
       key: "q2",
-      text: "Do the Multiplication: 2️⃣ * 2️⃣",
-      options: ["4", "8", "0", "1"],
+      text: "(1/4) ___ (2/8)",
+      options: [">", "<", "="],
     },
     {
       key: "q3",
-      text: "Do the Division: 🔟 / 5️⃣",
-      options: ["8", "2", "9", "1"],
+      text: "(7/10) ___ (3/4)",
+      options: [">", "<", "="],
     },
     {
       key: "q4",
-      text: "Do the Division:  9️⃣ / 3️⃣",
-      options: ["8", "2", "3", "0"],
+      text: "(5/6) ___ (3/6)",
+      options: [">", "<", "="],
     },
     {
       key: "q5",
-      text: " Do the Division: 8️⃣ / 2️⃣",
-      options: ["1", "2", "0", "4"],
+      text: "(2/3) ___ (3/5)",
+      options: [">", "<", "="],
     },
-
-
-
-    {
-      key: "q6",
-      text: "Do the Multiplication:  3️⃣ * 5️⃣  ",
-      options: ["15", "3", "1", "6"],
-    },
-
-
-
-    {
-      key: "q7",
-      text: "Do the Multiplication: 8️⃣ * 2️⃣ ",
-      options: ["9", "16", "4", "3"],
-    },
-
-
-
-
-
 
 
 
@@ -109,11 +87,9 @@ const SecLesson: React.FC = () => {
 
       {/* Title Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Lesson 2: Basic Arithmetic</Text>
+        <Text style={styles.title}>Lesson 1</Text>
         <Text style={styles.description}>
-        In this lesson of arithmetics, you will learn about basics of multiplication and division.
-          We will explore the basics of this lesson in fun way to make you into a math magician soon!
-        
+        In this lesson, we will discuss comparing fractions. After you have finished the video below, enjoy practicing with the new skills you have achieved today. Go Magicians!
         </Text>
       </View>
 
@@ -121,7 +97,7 @@ const SecLesson: React.FC = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Watch the Video</Text>
         <View style={styles.video}>
-          <YouTubeIframe height={200} videoId="D684OapsF_A" />
+          <YouTubeIframe height={200} videoId="6PIZ9P5aRWo" />
         </View>
       </View>
 
@@ -175,7 +151,7 @@ const SecLesson: React.FC = () => {
       <View style={styles.quizSection}>
         <TouchableOpacity
           style={styles.quizButton}
-          onPress={() => router.push("/FirstGrade/Quiz2")}
+          onPress={() => router.push("/FourthGrade/FourthGradeQuiz2")}
         >
           <Text style={styles.buttonText}>Go to Graded Quiz</Text>
         </TouchableOpacity>
@@ -302,4 +278,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SecLesson;
+export default FourthGradeLesson2;

@@ -3,7 +3,6 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
-      {/* Main Screens */}
       <Stack.Screen name="index" options={{ title: "Welcome" }} />
       <Stack.Screen name="login" options={{ title: "Login" }} />
       <Stack.Screen name="signup" options={{ title: "Sign Up" }} />
@@ -11,13 +10,6 @@ export default function RootLayout() {
         name="GradeSelection"
         options={{ title: "Select Your Grade" }}
       />
-
-      {/* Profile Screen */}
-      <Stack.Screen
-        name="Profile/profilemain"
-        options={{ title: "My Profile" }}
-      />
-
       {/* Kindergarten Screens */}
       <Stack.Screen
         name="Kindergarten/KindergartenWelcome"
@@ -196,6 +188,80 @@ export default function RootLayout() {
         name="ThirdGrade/ThirdResult2"
         options={{ title: "Third Grade Result 2" }}
       />
+
+
+
+
+       {/* 4th grade Screens */}
+      
+
+       <Stack.Screen
+        name="FourthGrade/FourthGradeWelcome"
+        options={{ title: "Welcome to Fourth Grade" }}
+      />
+
+
+
+      <Stack.Screen
+        name="FourthGrade/FourthGradeLesson1"
+        options={{ title: "Fourth Grade Lesson 1" }}
+      />
+
+
+     <Stack.Screen
+        name="FourthGrade/FourthGradeLesson2"
+        options={{ title: "Fourth Grade Lesson 2" }}
+      />
+
+
+
+      <Stack.Screen
+        name="FourthGrade/FourthGradeQuiz1"
+        options={{ title: "Fourth Grade Quiz 1" }}
+      />
+
+
+
+     <Stack.Screen
+        name="FourthGrade/FourthGradeQuiz2"
+        options={{ title: "Fourth Grade Quiz 2" }}
+      />
+
+
+
+     <Stack.Screen
+        name="FourthGrade/FourthGradeResult1"
+        options={{ title: "Fourth Grade Result 1" }}
+      />
+
+
+
+      <Stack.Screen
+        name="FourthGrade/FourthGradeResult2"
+        options={{ title: "Fourth Grade Result 2" }}
+      />
+
+
+       {/* 5th grade Screens */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

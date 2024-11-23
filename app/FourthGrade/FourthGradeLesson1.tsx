@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
 
-const SecLesson: React.FC = () => {
+const FourthGradeLesson1: React.FC = () => {
   const router = useRouter();
 
   // State for selected answers and feedback
@@ -27,57 +27,57 @@ const SecLesson: React.FC = () => {
 
   // Correct answers for the quiz
   const correctAnswers = {
-    q1: "18",
-    q2: "4",
-    q3: "2",
-    q4: "3",
-    q5: "4",
-    q6: "15",
-    q7: "16",
+    q1: "True",
+    q2: "False",
+    q3: "True",
+    q4: "False",
+    q5: "False",
+    q6: "True",
+    q7: "False",
   };
 
   // Questions and options
   const questions = [
     {
       key: "q1",
-      text: " Do the Multiplication: 3️⃣ * 6️⃣",
-      options: ["2", "18", "10", "5"],
+      text: "(1/2) is equavalent to (2/4)",
+      options: ["True", "False"],
     },
     {
       key: "q2",
-      text: "Do the Multiplication: 2️⃣ * 2️⃣",
-      options: ["4", "8", "0", "1"],
+      text: "(3/6) is greater than (1/2)",
+      options: ["True", "False"],
     },
     {
       key: "q3",
-      text: "Do the Division: 🔟 / 5️⃣",
-      options: ["8", "2", "9", "1"],
+      text: "(5/10) is equal to (1/2)",
+      options: ["True", "False"],
     },
     {
       key: "q4",
-      text: "Do the Division:  9️⃣ / 3️⃣",
-      options: ["8", "2", "3", "0"],
+      text: "(4/8) is greater than (2/4)",
+      options: ["True", "False"],
     },
     {
       key: "q5",
-      text: " Do the Division: 8️⃣ / 2️⃣",
-      options: ["1", "2", "0", "4"],
+      text: "(2/5) is less than (4/10)",
+      options: ["True", "False"],
     },
 
 
 
     {
       key: "q6",
-      text: "Do the Multiplication:  3️⃣ * 5️⃣  ",
-      options: ["15", "3", "1", "6"],
+      text: "(6/9) is equavalent to (2/4)",
+      options: ["True", "False"],
     },
 
 
 
     {
       key: "q7",
-      text: "Do the Multiplication: 8️⃣ * 2️⃣ ",
-      options: ["9", "16", "4", "3"],
+      text: "(3/4) is smaller than (6/8)",
+      options: ["True", "False"],
     },
 
 
@@ -109,11 +109,9 @@ const SecLesson: React.FC = () => {
 
       {/* Title Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Lesson 2: Basic Arithmetic</Text>
+        <Text style={styles.title}>Lesson 1</Text>
         <Text style={styles.description}>
-        In this lesson of arithmetics, you will learn about basics of multiplication and division.
-          We will explore the basics of this lesson in fun way to make you into a math magician soon!
-        
+        In this lesson, we will discuss fractions. After you have finished the video below, enjoy practicing with the new skills you have achieved today. Go Magicians!
         </Text>
       </View>
 
@@ -121,7 +119,7 @@ const SecLesson: React.FC = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Watch the Video</Text>
         <View style={styles.video}>
-          <YouTubeIframe height={200} videoId="D684OapsF_A" />
+          <YouTubeIframe height={200} videoId="ke5Ik-Iq0YQ" />
         </View>
       </View>
 
@@ -175,7 +173,7 @@ const SecLesson: React.FC = () => {
       <View style={styles.quizSection}>
         <TouchableOpacity
           style={styles.quizButton}
-          onPress={() => router.push("/FirstGrade/Quiz2")}
+          onPress={() => router.push("/FourthGrade/FourthGradeQuiz1")}
         >
           <Text style={styles.buttonText}>Go to Graded Quiz</Text>
         </TouchableOpacity>
@@ -302,4 +300,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SecLesson;
+export default FourthGradeLesson1;

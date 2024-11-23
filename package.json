@@ -20,37 +20,19 @@
     "@react-native-community/netinfo": "^11.4.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
-<<<<<<< HEAD
-    "@rneui/themed": "^4.0.0-rc.8",
-    "@supabase/supabase-js": "^2.46.1",
-    "bcrypt": "^5.1.1",
-    "bcrypt-react-native": "^1.1.1",
-    "bcryptjs": "^2.4.3",
-    "expo": "^52.0.7",
-    "expo-constants": "~17.0.3",
-    "expo-font": "~13.0.1",
-    "expo-linking": "~7.0.3",
-    "expo-router": "~4.0.7",
-=======
+    "@types/react": "~18.3.12",
     "expo": "^52.0.7",
     "expo-constants": "~17.0.3",
     "expo-font": "~13.0.1",
     "expo-linking": "~7.0.2",
     "expo-router": "~4.0.6",
->>>>>>> bd0f81ec6b3dced484b6a63ac8bd18e768db6ec9
     "expo-splash-screen": "~0.29.11",
     "expo-status-bar": "~2.0.0",
     "expo-system-ui": "~4.0.3",
     "expo-web-browser": "~14.0.1",
-<<<<<<< HEAD
     "firebase": "^11.0.2",
+    "jest-expo": "~52.0.2",
     "mathmagicians": "file:",
-    "metro": "^0.81.0",
-    "metro-config": "^0.81.0",
-    "mock-aws-s3": "^4.0.0",
-=======
-    "mathmagicians": "file:",
->>>>>>> bd0f81ec6b3dced484b6a63ac8bd18e768db6ec9
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.2",
@@ -58,19 +40,9 @@
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.1.0",
-<<<<<<< HEAD
-    "react-native-url-polyfill": "^2.0.0",
-    "react-native-web": "~0.19.13",
-    "react-native-webview": "^13.12.4",
-    "react-native-youtube-iframe": "^2.3.0",
-    "scrollview": "^0.0.0"
-=======
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.4",
-    "react-native-youtube-iframe": "^2.3.0",
-    "@types/react": "~18.3.12",
-    "jest-expo": "~52.0.2"
->>>>>>> bd0f81ec6b3dced484b6a63ac8bd18e768db6ec9
+    "react-native-youtube-iframe": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
