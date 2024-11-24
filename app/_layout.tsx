@@ -245,26 +245,51 @@ export default function RootLayout() {
        {/* 5th grade Screens */}
 
 
+       <Stack.Screen
+        name="FifthGrade/FifthGradeWelcome"
+        options={{ title: "Welcome to Fifth Grade" }}
+      />
 
 
 
+      <Stack.Screen
+        name="FifthGrade/FifthGradeLesson1"
+        options={{ title: "Fifth Grade Lesson 1" }}
+      />
+
+
+     <Stack.Screen
+        name="FifthGrade/FifthGradeLesson2"
+        options={{ title: "Fifth Grade Lesson 2" }}
+      />
 
 
 
+      <Stack.Screen
+        name="FifthGrade/FifthGradeQuiz1"
+        options={{ title: "Fifth Grade Quiz 1" }}
+      />
 
 
 
+     <Stack.Screen
+        name="FifthGrade/FifthGradeQuiz2"
+        options={{ title: "Fifth Grade Quiz 2" }}
+      />
 
 
 
+     <Stack.Screen
+        name="FifthGrade/FifthGradeResult1"
+        options={{ title: "Fifth Grade Result 1" }}
+      />
 
 
 
-
-
-
-
-
+      <Stack.Screen
+        name="FifthGrade/FifthGradeResult2"
+        options={{ title: "Fifth Grade Result 2" }}
+      />
 
 
 

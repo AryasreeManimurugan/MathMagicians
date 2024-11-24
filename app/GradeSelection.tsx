@@ -49,7 +49,9 @@ return (
       >
         <Text style={styles.buttonText}>4th Grade</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/FifthGrade/FifthGradeWelcome")}
+      >
         <Text style={styles.buttonText}>5th Grade</Text>
       </TouchableOpacity>
     </View>
