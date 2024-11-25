@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
+
+// Define the valid question keys
+type QuestionKey = "q1" | "q2" | "q3" | "q4" | "q5";
+
+// Define the correct answers as an object where the key is a string and value is string
+const correctAnswers: Record<QuestionKey, string> = {
+  q1: "3",
+  q2: "5",
+  q3: "4",
+  q4: "6",
+  q5: "7",
+};
+
+// Define the selected answers object
+type SelectedAnswers = Record<QuestionKey, string | null>;
 
 const KindergartenLesson1: React.FC = () => {
   const router = useRouter();
 
   // State for selected answers and feedback
-  const [selectedAnswers, setSelectedAnswers] = useState({
+  const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({
     q1: null,
     q2: null,
     q3: null,
@@ -22,15 +30,6 @@ const KindergartenLesson1: React.FC = () => {
     q5: null,
   });
   const [submitted, setSubmitted] = useState(false);
-
-  // Correct answers for the quiz
-  const correctAnswers = {
-    q1: "3",
-    q2: "5",
-    q3: "4",
-    q4: "6",
-    q5: "7",
-  };
 
   // Questions and options
   const questions = [
@@ -62,7 +61,7 @@ const KindergartenLesson1: React.FC = () => {
   ];
 
   // Function to handle option selection
-  const handleOptionSelect = (questionKey: string, option: string) => {
+  const handleOptionSelect = (questionKey: QuestionKey, option: string) => {
     setSelectedAnswers((prev) => ({ ...prev, [questionKey]: option }));
   };
 
@@ -74,18 +73,13 @@ const KindergartenLesson1: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Logo Section */}
-      <Image
-        source={require("../../assets/images/logo.jpeg")}
-        style={styles.logo}
-      />
+      <Image source={require("../../assets/images/logo.jpeg")} style={styles.logo} />
 
       {/* Title Section */}
       <View style={styles.sectionContainer}>
         <Text style={styles.title}>Lesson 1: Basic Counting</Text>
         <Text style={styles.description}>
-          In this lesson, you will learn the basics of counting. We'll start
-          with numbers 1 through 10 and show you how to count objects using
-          these numbers.
+          In this lesson, you will learn the basics of counting. We'll start with numbers 1 through 10 and show you how to count objects using these numbers.
         </Text>
       </View>
 
@@ -108,10 +102,9 @@ const KindergartenLesson1: React.FC = () => {
                 key={option}
                 style={[
                   styles.optionButton,
-                  selectedAnswers[question.key] === option &&
-                    styles.selectedOption,
+                  selectedAnswers[question.key as QuestionKey] === option && styles.selectedOption,
                 ]}
-                onPress={() => handleOptionSelect(question.key, option)}
+                onPress={() => handleOptionSelect(question.key as QuestionKey, option)}
               >
                 <Text style={styles.optionText}>{option}</Text>
               </TouchableOpacity>
@@ -120,16 +113,14 @@ const KindergartenLesson1: React.FC = () => {
               <Text
                 style={[
                   styles.feedbackText,
-                  selectedAnswers[question.key] === correctAnswers[question.key]
+                  selectedAnswers[question.key as QuestionKey] === correctAnswers[question.key as QuestionKey]
                     ? styles.correct
                     : styles.wrong,
                 ]}
               >
-                {selectedAnswers[question.key] === correctAnswers[question.key]
+                {selectedAnswers[question.key as QuestionKey] === correctAnswers[question.key as QuestionKey]
                   ? "Correct!"
-                  : `Wrong! The correct answer is ${
-                      correctAnswers[question.key]
-                    }.`}
+                  : `Wrong! The correct answer is ${correctAnswers[question.key as QuestionKey]}.`}
               </Text>
             )}
           </View>
@@ -264,12 +255,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   buttonText: {
-    fontSize: 18,
     color: "#fff",
+    fontSize: 18,
     fontWeight: "bold",
   },
 });

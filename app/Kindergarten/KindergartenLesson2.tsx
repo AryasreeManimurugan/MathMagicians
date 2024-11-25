@@ -10,11 +10,18 @@ import {
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
 
+// Define types for question keys and selected answers
+type QuestionKey = "q1" | "q2" | "q3" | "q4" | "q5";
+
+interface SelectedAnswers {
+  [key in QuestionKey]: string | null;
+}
+
 const KindergartenLesson2: React.FC = () => {
   const router = useRouter();
 
   // State for selected answers and feedback
-  const [selectedAnswers, setSelectedAnswers] = useState({
+  const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({
     q1: null,
     q2: null,
     q3: null,
@@ -62,7 +69,7 @@ const KindergartenLesson2: React.FC = () => {
   ];
 
   // Function to handle option selection
-  const handleOptionSelect = (questionKey: string, option: string) => {
+  const handleOptionSelect = (questionKey: QuestionKey, option: string) => {
     setSelectedAnswers((prev) => ({ ...prev, [questionKey]: option }));
   };
 
@@ -108,10 +115,9 @@ const KindergartenLesson2: React.FC = () => {
                 key={option}
                 style={[
                   styles.optionButton,
-                  selectedAnswers[question.key] === option &&
-                    styles.selectedOption,
+                  selectedAnswers[question.key] === option && styles.selectedOption,
                 ]}
-                onPress={() => handleOptionSelect(question.key, option)}
+                onPress={() => handleOptionSelect(question.key as QuestionKey, option)}
               >
                 <Text style={styles.optionText}>{option}</Text>
               </TouchableOpacity>
@@ -120,16 +126,14 @@ const KindergartenLesson2: React.FC = () => {
               <Text
                 style={[
                   styles.feedbackText,
-                  selectedAnswers[question.key] === correctAnswers[question.key]
+                  selectedAnswers[question.key as QuestionKey] === correctAnswers[question.key as keyof typeof correctAnswers]
                     ? styles.correct
                     : styles.wrong,
                 ]}
               >
-                {selectedAnswers[question.key] === correctAnswers[question.key]
+                {selectedAnswers[question.key as QuestionKey] === correctAnswers[question.key as keyof typeof correctAnswers]
                   ? "Correct!"
-                  : `Wrong! The correct answer is ${
-                      correctAnswers[question.key]
-                    }.`}
+                  : `Wrong! The correct answer is ${correctAnswers[question.key as keyof typeof correctAnswers]}.`}
               </Text>
             )}
           </View>

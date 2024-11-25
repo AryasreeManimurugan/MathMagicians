@@ -15,25 +15,6 @@ return (
         router.push("/Profile/profilemain");
       }}
     >
-
-  return (
-    <View style={styles.container}>
-       <TouchableOpacity
-      style={styles.profileButton}
-      onPress={() => {
-        console.log("Navigating to /Profile/profilemain");
-        router.push("/Profile/profilemain");
-      }}
-    >
-      <Image
-        source={require("../assets/images/user.png")}
-        style={styles.profileImage}
-      />
-    </TouchableOpacity>
-
-      
-      
-      
       <Image
         source={require("../assets/images/user.png")}
         style={styles.profileImage}
@@ -76,35 +57,6 @@ return (
     </View>
   </View>
 );
-      <Text style={styles.text}>Select Grade Level</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.push("/Kindergarten/KindergartenWelcome")} // Navigate to KindergartenWelcome screen
-        >
-
-
-          
-          <Text style={styles.buttonText}>Kindergarten</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>1st Grade</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>2nd Grade</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>3rd Grade</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>4th Grade</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>5th Grade</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
 };
 
 const styles = StyleSheet.create({
@@ -159,17 +111,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#1E90FF",
     fontWeight: "600",
-  },
-  profileButton: {
-    position: "absolute",
-    top: 40,
-    right: 20,
-    zIndex: 10,
-  },
-  profileImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
   },
 });
 
