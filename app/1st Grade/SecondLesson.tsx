@@ -10,7 +10,7 @@ import {
 import { useRouter } from "expo-router";
 import YouTubeIframe from "react-native-youtube-iframe";
 
-const KindergartenLesson1: React.FC = () => {
+const SecLesson: React.FC = () => {
   const router = useRouter();
 
   // State for selected answers and feedback
@@ -20,45 +20,73 @@ const KindergartenLesson1: React.FC = () => {
     q3: null,
     q4: null,
     q5: null,
+    q6: null,
+    q7: null,
   });
   const [submitted, setSubmitted] = useState(false);
 
   // Correct answers for the quiz
   const correctAnswers = {
-    q1: "3",
-    q2: "5",
-    q3: "4",
-    q4: "6",
-    q5: "7",
+    q1: "18",
+    q2: "4",
+    q3: "2",
+    q4: "3",
+    q5: "4",
+    q6: "15",
+    q7: "16",
   };
 
   // Questions and options
   const questions = [
     {
       key: "q1",
-      text: "Count the following items: 🍎🍎🍎",
-      options: ["2", "3", "4", "5"],
+      text: " Do the Multiplication: 3️⃣ * 6️⃣",
+      options: ["2", "18", "10", "5"],
     },
     {
       key: "q2",
-      text: "Count the following items: 🐱🐱🐱🐱🐱",
-      options: ["4", "5", "6", "7"],
+      text: "Do the Multiplication: 2️⃣ * 2️⃣",
+      options: ["4", "8", "0", "1"],
     },
     {
       key: "q3",
-      text: "Count the following items: 🌳🌳🌳🌳",
-      options: ["3", "4", "5", "6"],
+      text: "Do the Division: 🔟 / 5️⃣",
+      options: ["8", "2", "9", "1"],
     },
     {
       key: "q4",
-      text: "Count the following items: ⭐⭐⭐⭐⭐⭐",
-      options: ["5", "6", "7", "8"],
+      text: "Do the Division:  9️⃣ / 3️⃣",
+      options: ["8", "2", "3", "0"],
     },
     {
       key: "q5",
-      text: "Count the following items: 🍕🍕🍕🍕🍕🍕🍕",
-      options: ["6", "7", "8", "9"],
+      text: " Do the Division: 8️⃣ / 2️⃣",
+      options: ["1", "2", "0", "4"],
     },
+
+
+
+    {
+      key: "q6",
+      text: "Do the Multiplication:  3️⃣ * 5️⃣  ",
+      options: ["15", "3", "1", "6"],
+    },
+
+
+
+    {
+      key: "q7",
+      text: "Do the Multiplication: 8️⃣ * 2️⃣ ",
+      options: ["9", "16", "4", "3"],
+    },
+
+
+
+
+
+
+
+
   ];
 
   // Function to handle option selection
@@ -81,11 +109,11 @@ const KindergartenLesson1: React.FC = () => {
 
       {/* Title Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Lesson 1: Basic Counting</Text>
+        <Text style={styles.title}>Lesson 2: Basic Arithmetic</Text>
         <Text style={styles.description}>
-          In this lesson, you will learn the basics of counting. We'll start
-          with numbers 1 through 10 and show you how to count objects using
-          these numbers.
+        In this lesson of arithmetics, you will learn about basics of multiplication and division.
+          We will explore the basics of this lesson in fun way to make you into a math magician soon!
+        
         </Text>
       </View>
 
@@ -93,7 +121,7 @@ const KindergartenLesson1: React.FC = () => {
       <View style={styles.sectionContainer}>
         <Text style={styles.sectionTitle}>Watch the Video</Text>
         <View style={styles.video}>
-          <YouTubeIframe height={200} videoId="h6RNkQ7lU8Y" />
+          <YouTubeIframe height={200} videoId="D684OapsF_A" />
         </View>
       </View>
 
@@ -147,7 +175,7 @@ const KindergartenLesson1: React.FC = () => {
       <View style={styles.quizSection}>
         <TouchableOpacity
           style={styles.quizButton}
-          onPress={() => router.push("/Kindergarten/KindergartenQuiz1")}
+          onPress={() => router.push("/FirstGrade/Quiz2")}
         >
           <Text style={styles.buttonText}>Go to Graded Quiz</Text>
         </TouchableOpacity>
@@ -274,4 +302,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenLesson1;
+export default SecLesson;

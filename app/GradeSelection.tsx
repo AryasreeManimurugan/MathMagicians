@@ -7,6 +7,22 @@ const GradeSelection: React.FC = () => {
 
   return (
     <View style={styles.container}>
+       <TouchableOpacity
+      style={styles.profileButton}
+      onPress={() => {
+        console.log("Navigating to /Profile/profilemain");
+        router.push("/Profile/profilemain");
+      }}
+    >
+      <Image
+        source={require("../assets/images/user.png")}
+        style={styles.profileImage}
+      />
+    </TouchableOpacity>
+
+      
+      
+      
       <Image
         source={require("../assets/images/logo.jpeg")}
         style={styles.logo}
@@ -17,6 +33,9 @@ const GradeSelection: React.FC = () => {
           style={styles.button}
           onPress={() => router.push("/Kindergarten/KindergartenWelcome")} // Navigate to KindergartenWelcome screen
         >
+
+
+          
           <Text style={styles.buttonText}>Kindergarten</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
@@ -80,6 +99,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#1E90FF",
     fontWeight: "600",
+  },
+  profileButton: {
+    position: "absolute",
+    top: 40,
+    right: 20,
+    zIndex: 10,
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
 });
 

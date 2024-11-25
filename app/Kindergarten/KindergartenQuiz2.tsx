@@ -67,11 +67,10 @@ const KindergartenQuiz2: React.FC = () => {
   };
 
   const handleSubmitQuiz = () => {
-    const score = Object.values(selectedAnswers).reduce(
-      (total, answer) => total + (answer !== null ? 1 : 0),
-      0
-    );
-    router.push({ pathname: "Kindergarten/KindergartenResults2", params: { score } });
+      const score = Object.values(selectedAnswers).reduce<number>((total, answer) => {
+        return total + (answer !== null ? 1 : 0);
+      }, 0); 
+    router.push({ pathname: "/Kindergarten/KindergartenResults2", params: { score } });
   };
 
   return (

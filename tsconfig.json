@@ -3,9 +3,15 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["./*"]
-    
+      "@/*": ["./*"],
     },
+    "moduleResolution": "node",
+      "target": "ES6",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "lib": ["es2015"],
     "typeRoots": ["node_modules/@types"],
     "types": ["node"],
     "esModuleInterop": true
@@ -15,5 +21,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+
+
   ]
 }

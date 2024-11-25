@@ -2,19 +2,16 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 
-const KindergartenResults1: React.FC = () => {
+const result1: React.FC = () => {
   const router = useRouter();
   const { score } = useLocalSearchParams(); // Retrieve score from parameters
-  
-  // Convert score to a number
-  const scoreNumber = Number(score); // or parseInt(score, 10)
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Quiz Results</Text>
-      <Text style={styles.scoreText}>Your Score: {scoreNumber} / 10</Text>
+      <Text style={styles.scoreText}>Your Score: {score} / 10</Text>
       <Text style={styles.messageText}>
-        {scoreNumber >= 7
+        {score >= 7
           ? "Great job! You passed the quiz."
           : "Keep practicing! Try again to improve your score."}
       </Text>
@@ -23,16 +20,16 @@ const KindergartenResults1: React.FC = () => {
         style={styles.button}
         onPress={() =>
           router.push(
-            scoreNumber >= 7
-              ? "/Kindergarten/KindergartenLesson2"
-              : "/Kindergarten/KindergartenLesson1"
+            score >= 7
+              ? "/FirstGrade/SecLesson"
+              : "/FirstGrade/FirstLesson"
           )
         }
       >
         <Text style={styles.buttonText}>
-          {scoreNumber >= 7
-            ? "Proceed to Lesson 2: Shapes and Colors"
-            : "Return to Lesson 1: Basic Counting"}
+          {score >= 7
+            ? "Proceed to Lesson 2"
+            : "Return to Lesson 1"}
         </Text>
       </TouchableOpacity>
     </View>
@@ -79,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenResults1;
+export default result1;

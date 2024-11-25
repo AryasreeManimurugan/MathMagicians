@@ -14,7 +14,8 @@ import {
 import { useRouter } from "expo-router";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../database";  // Ensure this imports the correct Firebase auth instance
-
+import { firestoredb } from "../database";
+import { doc, setDoc } from "firebase/firestore";
 const SignUpScreen: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ const SignUpScreen: React.FC = () => {
   const router = useRouter();
 
   const authentication = auth;
+
 
   const handleSignup = async () => {
     if (!firstName || !email || !password || !confirmPassword) {
@@ -46,6 +48,13 @@ const SignUpScreen: React.FC = () => {
       // Redirect to Login screen
       router.push("/login");
 
+      const docref = doc(firestoredb, "users",userCredential.user.uid);
+      await setDoc(docref, {
+        firstName: firstName,
+        email: email,
+        password: password,
+      }); 
+
       // Clear input fields after successful sign-up
       setFirstName("");
       setEmail("");
@@ -59,7 +68,10 @@ const SignUpScreen: React.FC = () => {
       } else {
         setErrorMessage("An unexpected error occurred");
       }
+
+     
     }
+   
   };
 
   return (

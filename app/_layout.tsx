@@ -10,6 +10,35 @@ export default function RootLayout() {
         name="GradeSelection"
         options={{ title: "Select Your Grade" }}
       />
+        <Stack.Screen
+        name="Profile/userInfo"
+        options={{ title: "View Personal Info" }}
+      />
+
+     <Stack.Screen
+        name="Profile/userprogress"
+        options={{ title: "My Progress" }}
+      />
+
+<Stack.Screen
+        name="Profile/userscores"
+        options={{ title: "My Scores" }}
+      />
+
+       <Stack.Screen
+        name="Profile/profilemain"
+        options={{ title: "My Profile" }}
+      />
+      <Stack.Screen
+        name="1st Grade/FirstWelcome"
+        options={{ title: "Welcome to First Grade! " }}
+      />
+
+      <Stack.Screen
+        name="1st Grade/FirstLesson"
+        options={{ title: " " }}
+      />
+
       {/* Kindergarten Screens */}
       <Stack.Screen
         name="Kindergarten/KindergartenWelcome"

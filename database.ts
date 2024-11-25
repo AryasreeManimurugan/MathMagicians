@@ -5,8 +5,8 @@ import {getAuth} from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-import AsyncStorage, { AsyncStorageStatic } from "@react-native-async-storage/async-storage";
-import {getFirestore} from 'firebase/firestore';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getFirestore, doc, setDoc} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC7xPjzUqvH9Z1suaoTx0o9SMveP54MtUk",
@@ -18,7 +18,9 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const auth = getAuth(app, 
+);
+
 export const firestoredb = getFirestore(app);
 
 

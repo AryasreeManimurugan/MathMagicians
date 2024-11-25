@@ -5,13 +5,16 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 const KindergartenResults2: React.FC = () => {
   const router = useRouter();
   const { score } = useLocalSearchParams(); // Retrieve score from parameters
+  
+  // Convert score to a number
+  const scoreNumber = Number(score); // or parseInt(score, 10)
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Quiz Results</Text>
-      <Text style={styles.scoreText}>Your Score: {score} / 10</Text>
+      <Text style={styles.scoreText}>Your Score: {scoreNumber} / 10</Text>
       <Text style={styles.messageText}>
-        {score >= 7
+        {scoreNumber >= 7
           ? "Great job! You passed the quiz."
           : "Keep practicing! Try again to improve your score."}
       </Text>
@@ -20,14 +23,14 @@ const KindergartenResults2: React.FC = () => {
         style={styles.button}
         onPress={() =>
           router.push(
-            score >= 7
+            scoreNumber >= 7
               ? "../GradeSelection"
               : "/Kindergarten/KindergartenQuiz2"
           )
         }
       >
         <Text style={styles.buttonText}>
-          {score >= 7
+          {scoreNumber >= 7
             ? "Proceed to Grade Selection"
             : "Return to Lesson 2: Shapes and Colors"}
         </Text>
