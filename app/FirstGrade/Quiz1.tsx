@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-const KindergartenQuiz1: React.FC = () => {
+const Quiz1: React.FC = () => {
   const router = useRouter();
 
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -17,79 +17,80 @@ const KindergartenQuiz1: React.FC = () => {
 
   const questions = [
     {
-      question: "How many apples are there? 🍎🍎🍎",
-      options: [2, 3, 4],
-      answer: 1,
+      question: "Add the objects: 🐔🐔🐔🐔+ 🍎🍎",
+      options: [3, 6, 4],
+      answer: 6,
     },
     {
-      question: "How many cats are there? 🐱🐱🐱🐱",
-      options: [3, 4, 5],
-      answer: 1,
-    },
-    {
-      question: "How many stars are there? ⭐⭐⭐",
-      options: [3, 2, 5],
+      question: "Sustract the objects: 🐱🐱-🐱🐱", options: [3, 2, 0],
       answer: 0,
     },
     {
-      question: "How many cars are there? 🚗🚗🚗🚗🚗",
-      options: [5, 4, 6],
+      question: " Substract the objects: 😍😍😍-😍😍😍", options: [1, 2, 0],
+     
       answer: 0,
     },
     {
-      question: "How many trees are there? 🌳🌳",
-      options: [1, 2, 3],
-      answer: 1,
+      question: "Add the objects: 👻👻👻+👻", options: [5, 4, 2],
+      
+      answer: 4,
     },
     {
-      question: "How many fish are there? 🐟🐟🐟🐟🐟🐟",
-      options: [5, 6, 7],
-      answer: 1,
-    },
-    {
-      question: "How many suns are there? 🌞🌞",
-      options: [2, 3, 4],
-      answer: 0,
-    },
-    {
-      question: "How many flowers are there? 🌸🌸🌸",
-      options: [2, 3, 4],
-      answer: 1,
-    },
-    {
-      question: "How many pencils are there? ✏️✏️",
-      options: [1, 3, 2],
+      question: "Add the objects: 🌳+🌳", options: [1, 2, 0],
+  
       answer: 2,
     },
     {
-      question: "How many balloons are there? 🎈🎈🎈🎈",
-      options: [4, 3, 5],
+      question: "Add the objects: 🦖🦖🦖🦖🦖+ 0️⃣", options: [5, 6, 7] ,
+      
+      answer: 5,
+    },
+    {
+      question: "Substract the objects: 🌞-🌞", options: [0, 3, 7],
+      
       answer: 0,
+    },
+    {
+      question: "Add the objects: 🥺🥺🥺+🦄", options: [2, 3, 4],
+     
+      answer: 4,
+    },
+    {
+      question: "Add the objects: ✏️✏️+ 🐬", options: [1, 3, 2],
+     
+      answer: 3,
+    },
+    {
+      question: "Substract the objects: 🎈🎈🎈-🎈", options: [4, 3, 2],
+      
+      answer: 2,
     },
   ];
 
-  const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
+  const handleAnswerSelect = (questionIndex: number, selectedValue: number) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questionIndex]: optionIndex,
+      [questionIndex]: selectedValue, 
     }));
   };
-
+  
   const handleSubmitQuiz = () => {
     const score = questions.reduce((total, question, index) => {
-      const selectedAnswer = selectedAnswers[index];
-      return total + (selectedAnswer === question.answer ? 1 : 0);
+      const selectedAnswer = selectedAnswers[index]; 
+      return total + (selectedAnswer === question.answer ? 1 : 0); 
     }, 0);
+  
     router.push({
-      pathname: "/Kindergarten/KindergartenResults1",
+      pathname: "/FirstGrade/result1",
       params: { score },
     });
   };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Basic Counting Quiz</Text>
+        <Text style={styles.title}> Arithmetic Quiz</Text>
         <Text style={styles.description}>
           Answer the following questions by selecting the correct option.
         </Text>
@@ -99,27 +100,28 @@ const KindergartenQuiz1: React.FC = () => {
         <View key={index} style={styles.questionContainer}>
           <Text style={styles.questionText}>{q.question}</Text>
           <View style={styles.optionsContainer}>
-            {q.options.map((option, optionIndex) => (
-              <TouchableOpacity
-                key={optionIndex}
-                style={[
-                  styles.optionButton,
-                  selectedAnswers[index] === optionIndex &&
-                    styles.selectedOption,
-                ]}
-                onPress={() => handleAnswerSelect(index, optionIndex)}
-              >
-                <Text
-                  style={[
-                    styles.optionText,
-                    selectedAnswers[index] === optionIndex &&
-                      styles.selectedOptionText,
-                  ]}
-                >
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          {q.options.map((option, optionIndex) => (
+  <TouchableOpacity
+    key={optionIndex}
+    style={[
+      styles.optionButton,
+      selectedAnswers[index] === option && styles.selectedOption,
+    ]}
+    onPress={() => handleAnswerSelect(index, option)}
+  >
+    <Text
+      style={[
+        styles.optionText,
+        selectedAnswers[index] === option && styles.selectedOptionText,
+      ]}
+    >
+      {option}
+    </Text>
+  </TouchableOpacity>
+))}
+
+
+
           </View>
         </View>
       ))}
@@ -228,4 +230,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenQuiz1;
+export default Quiz1;

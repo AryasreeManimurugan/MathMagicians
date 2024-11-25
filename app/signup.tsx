@@ -6,9 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
   Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -75,67 +72,60 @@ const SignUpScreen: React.FC = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : undefined}>
-      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Image source={require("../assets/images/logo.jpeg")} style={styles.logo} />
-          <Text style={styles.headerText}>Sign Up</Text>
+    <View style={styles.container}>
+      <Image
+        source={require("../assets/images/logo.jpeg")}
+        style={styles.logo}
+      />
+      <Text style={styles.headerText}>Sign Up</Text>
 
-          {/* First Name Input */}
-          <TextInput
-            style={styles.input}
-            placeholder="First Name"
-            placeholderTextColor="#87cefa"
-            value={firstName}
-            onChangeText={setFirstName}
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="First Name"
+        placeholderTextColor="#87cefa"
+        value={firstName}
+        onChangeText={setFirstName}
+      />
 
-          {/* Email Input */}
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#87cefa"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#87cefa"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
 
-          {/* Password Input */}
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor="#87cefa"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        placeholderTextColor="#87cefa"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
 
-          {/* Confirm Password Input */}
-          <TextInput
-            style={styles.input}
-            placeholder="Confirm Password"
-            placeholderTextColor="#87cefa"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            secureTextEntry
-          />
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        placeholderTextColor="#87cefa"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+      />
 
-          {/* Error Message */}
-          {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+      <TouchableOpacity
+        style={styles.customButton}
+        onPress={() => router.push("/GradeSelection")}
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
 
-          {/* Sign Up Button */}
-          <TouchableOpacity style={styles.customButton} onPress={handleSignup}>
-            <Text style={styles.buttonText}>Sign Up</Text>
-          </TouchableOpacity>
-
-          {/* Login Link */}
-          <TouchableOpacity onPress={() => router.push("/login")}>
-            <Text style={styles.signUpText}>Already have an account? Login</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      <TouchableOpacity onPress={() => router.push("/login")}>
+        <Text style={styles.signUpText}>Already have an account? Login</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

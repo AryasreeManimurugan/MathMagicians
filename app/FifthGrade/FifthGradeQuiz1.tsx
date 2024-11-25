@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-const KindergartenQuiz1: React.FC = () => {
+const FifthGradeQuiz1: React.FC = () => {
   const router = useRouter();
 
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -17,79 +17,79 @@ const KindergartenQuiz1: React.FC = () => {
 
   const questions = [
     {
-      question: "How many apples are there? 🍎🍎🍎",
-      options: [2, 3, 4],
-      answer: 1,
+      question: " 0.5 + 0.7 = 1.1", options: ["True", "False"],
+      answer: "False",
     },
     {
-      question: "How many cats are there? 🐱🐱🐱🐱",
-      options: [3, 4, 5],
-      answer: 1,
+      question: " 2.35 + 1.15 = 3.50", options: ["True", "False"],
+      answer: "True",
     },
     {
-      question: "How many stars are there? ⭐⭐⭐",
-      options: [3, 2, 5],
-      answer: 0,
+      question: " 5.6 - 2.3 = 3.4", options: ["True", "False"],
+     
+      answer: "False",
     },
     {
-      question: "How many cars are there? 🚗🚗🚗🚗🚗",
-      options: [5, 4, 6],
-      answer: 0,
+      question: "8.0 - 4.45 = 3.55", options: ["True", "False"],
+      
+      answer: "True",
     },
     {
-      question: "How many trees are there? 🌳🌳",
-      options: [1, 2, 3],
-      answer: 1,
+      question: "2.5 * 3 = 6.5", options: ["True", "False"],
+  
+      answer: "False",
     },
     {
-      question: "How many fish are there? 🐟🐟🐟🐟🐟🐟",
-      options: [5, 6, 7],
-      answer: 1,
+      question: "1.2 * 1.5 = 1.8", options: ["True", "False"]  ,
+      
+      answer: "True",
     },
     {
-      question: "How many suns are there? 🌞🌞",
-      options: [2, 3, 4],
-      answer: 0,
+      question: "4.8 / 1.2 = 4.2", options: ["True", "False"],
+      
+      answer: "False",
     },
     {
-      question: "How many flowers are there? 🌸🌸🌸",
-      options: [2, 3, 4],
-      answer: 1,
+      question: "7.5 / 2.5 = 3", options: ["True", "False"],
+     
+      answer: "True",
     },
     {
-      question: "How many pencils are there? ✏️✏️",
-      options: [1, 3, 2],
-      answer: 2,
+      question: "0.6 * 0.4 = 0.24", options: ["True", "False"] ,
+     
+      answer: "True",
     },
     {
-      question: "How many balloons are there? 🎈🎈🎈🎈",
-      options: [4, 3, 5],
-      answer: 0,
+      question: "10.5 - 7.2 = 3.4", options: ["True", "False"],
+      
+      answer: "False",
     },
   ];
 
-  const handleAnswerSelect = (questionIndex: number, optionIndex: number) => {
+  const handleAnswerSelect = (questionIndex: number, selectedValue: number) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questionIndex]: optionIndex,
+      [questionIndex]: selectedValue, 
     }));
   };
-
+  
   const handleSubmitQuiz = () => {
     const score = questions.reduce((total, question, index) => {
-      const selectedAnswer = selectedAnswers[index];
-      return total + (selectedAnswer === question.answer ? 1 : 0);
+      const selectedAnswer = selectedAnswers[index]; 
+      return total + (selectedAnswer === question.answer ? 1 : 0); 
     }, 0);
+  
     router.push({
-      pathname: "/Kindergarten/KindergartenResults1",
+      pathname: "/FifthGrade/FifthGradeResult1",
       params: { score },
     });
   };
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.sectionContainer}>
-        <Text style={styles.title}>Basic Counting Quiz</Text>
+        <Text style={styles.title}> Decimal Quiz</Text>
         <Text style={styles.description}>
           Answer the following questions by selecting the correct option.
         </Text>
@@ -99,27 +99,28 @@ const KindergartenQuiz1: React.FC = () => {
         <View key={index} style={styles.questionContainer}>
           <Text style={styles.questionText}>{q.question}</Text>
           <View style={styles.optionsContainer}>
-            {q.options.map((option, optionIndex) => (
-              <TouchableOpacity
-                key={optionIndex}
-                style={[
-                  styles.optionButton,
-                  selectedAnswers[index] === optionIndex &&
-                    styles.selectedOption,
-                ]}
-                onPress={() => handleAnswerSelect(index, optionIndex)}
-              >
-                <Text
-                  style={[
-                    styles.optionText,
-                    selectedAnswers[index] === optionIndex &&
-                      styles.selectedOptionText,
-                  ]}
-                >
-                  {option}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          {q.options.map((option, optionIndex) => (
+  <TouchableOpacity
+    key={optionIndex}
+    style={[
+      styles.optionButton,
+      selectedAnswers[index] === option && styles.selectedOption,
+    ]}
+    onPress={() => handleAnswerSelect(index, option)}
+  >
+    <Text
+      style={[
+        styles.optionText,
+        selectedAnswers[index] === option && styles.selectedOptionText,
+      ]}
+    >
+      {option}
+    </Text>
+  </TouchableOpacity>
+))}
+
+
+
           </View>
         </View>
       ))}
@@ -228,4 +229,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KindergartenQuiz1;
+export default FifthGradeQuiz1;

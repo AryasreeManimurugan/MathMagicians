@@ -20,42 +20,52 @@ const KindergartenQuiz2: React.FC = () => {
     {
       question: "What shape is this? 🔵",
       options: ["Circle", "Square", "Triangle"],
+      answer: 0,
     },
     {
       question: "What color is this shape? 🟥",
       options: ["Red", "Blue", "Green"],
+      answer: 0,
     },
     {
       question: "What shape is this? 🔺",
       options: ["Circle", "Triangle", "Square"],
+      answer: 1,
     },
     {
       question: "What color is this shape? 🟩",
       options: ["Yellow", "Green", "Blue"],
+      answer: 1,
     },
     {
       question: "What shape is this? 🟦",
       options: ["Rectangle", "Circle", "Square"],
+      answer: 2,
     },
     {
       question: "What color is this? 🟨",
       options: ["Red", "Yellow", "Purple"],
+      answer: 1,
     },
     {
       question: "What shape is this? 🟠",
       options: ["Hexagon", "Square", "Circle"],
+      answer: 2,
     },
     {
       question: "What color is this shape? 🔶",
       options: ["Blue", "Orange", "Pink"],
+      answer: 1,
     },
     {
       question: "What shape is this? 🔷",
       options: ["Square", "Diamond", "Rectangle"],
+      answer: 1,
     },
     {
       question: "What color is this? 🟣",
       options: ["Purple", "Yellow", "Green"],
+      answer: 0,
     },
   ];
 
@@ -67,10 +77,17 @@ const KindergartenQuiz2: React.FC = () => {
   };
 
   const handleSubmitQuiz = () => {
-      const score = Object.values(selectedAnswers).reduce<number>((total, answer) => {
-        return total + (answer !== null ? 1 : 0);
-      }, 0); 
-    router.push({ pathname: "/Kindergarten/KindergartenResults2", params: { score } });
+    // Calculate the score
+    const score = questions.reduce((total, question, index) => {
+      const selectedAnswer = selectedAnswers[index];
+      return total + (selectedAnswer === question.answer ? 1 : 0);
+    }, 0);
+
+    // Navigate to results screen with the score
+    router.push({
+      pathname: "/Kindergarten/KindergartenResults2",
+      params: { score },
+    });
   };
 
   return (

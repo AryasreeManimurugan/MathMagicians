@@ -4,6 +4,17 @@ import { useRouter } from "expo-router";
 
 const GradeSelection: React.FC = () => {
   const router = useRouter();
+  
+return (
+  <View style={styles.container}>
+    {/* Profile Button */}
+    <TouchableOpacity
+      style={styles.profileButton}
+      onPress={() => {
+        console.log("Navigating to /Profile/profilemain");
+        router.push("/Profile/profilemain");
+      }}
+    >
 
   return (
     <View style={styles.container}>
@@ -24,9 +35,47 @@ const GradeSelection: React.FC = () => {
       
       
       <Image
-        source={require("../assets/images/logo.jpeg")}
-        style={styles.logo}
+        source={require("../assets/images/user.png")}
+        style={styles.profileImage}
       />
+    </TouchableOpacity>
+
+    <Image source={require("../assets/images/logo.jpeg")} style={styles.logo} />
+    <Text style={styles.text}>Select Grade Level</Text>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push("/Kindergarten/KindergartenWelcome")} // Navigate to KindergartenWelcome screen
+      >
+        <Text style={styles.buttonText}>Kindergarten</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+      onPress={() => router.push("/FirstGrade/FirstWelcome")}>
+        <Text style={styles.buttonText}>1st Grade</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/SecondGrade/SecGradeWelcome")}
+      >
+        <Text style={styles.buttonText}>2nd Grade</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+          onPress={() => router.push("/ThirdGrade/ThirdGradeWelcome")}
+      >
+        <Text style={styles.buttonText}>3rd Grade</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/FourthGrade/FourthGradeWelcome")}
+      >
+        <Text style={styles.buttonText}>4th Grade</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+       onPress={() => router.push("/FifthGrade/FifthGradeWelcome")}
+      >
+        <Text style={styles.buttonText}>5th Grade</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+);
       <Text style={styles.text}>Select Grade Level</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -65,6 +114,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#1E90FF",
     paddingHorizontal: 20,
+  },
+  profileButton: {
+    position: "absolute",
+    top: 40,
+    right: 20,
+    zIndex: 10,
+  },
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   logo: {
     width: 180,

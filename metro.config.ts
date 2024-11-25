@@ -1,7 +1,7 @@
 import { getDefaultConfig } from 'metro-config';
 
 const config = async () => {
-  const defaultConfig = await getDefaultConfig();
+  //const defaultConfig = await getDefaultConfig();
   return {
     ...defaultConfig,
     serializer: {
