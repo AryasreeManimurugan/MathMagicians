@@ -70,6 +70,27 @@ const KindergartenLesson1: React.FC = () => {
     setSubmitted(true);
   };
 
+
+   const extractYouTubeId = (url: string) => {
+    const regExp =
+    /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+
+    const match = url.match(regExp);
+    return match && match [2].length === 11? match [2]: null;
+
+   };
+
+   const videoID = extractYouTubeId("https://youtu.be/iLXNBiGJAGs?si=SGIbYV4GUmRs7X7v");
+
+
+
+
+
+
+
+
+
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Logo Section */}

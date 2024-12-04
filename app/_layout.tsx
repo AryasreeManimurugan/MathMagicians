@@ -319,6 +319,25 @@ export default function RootLayout() {
         name="FifthGrade/FifthGradeResult2"
         options={{ title: "Fifth Grade Result 2" }}
       />
+     
+
+        {/* 5th grade Screens */}
+       
+        
+       
+      <Stack.Screen
+        name="Kindergarten/TeacherViewKG.tsx"
+        options={{ title: "Teacher View" }}
+      />
+     
+
+
+
+
+
+
+
+
 
 
 
